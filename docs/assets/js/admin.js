@@ -183,7 +183,7 @@ function renderAll() {
         const prizeList = prizes.length
           ? `<ul class="app-prizes">${prizes.map((prize) => `<li><span>${escapeHtml(prize.description)}</span><button type="button" class="app-use-prize" data-child-id="${escapeHtml(c.id)}" data-redemption-id="${escapeHtml(prize.id)}">Use</button></li>`).join("")}</ul>`
           : "";
-        return `<div class="app-card app-card-link" role="link" tabindex="0" data-child-url="/Child/?id=${encodeURIComponent(c.id)}" style="border-top-color:${c.color || "#4a90d9"}"><h3>${escapeHtml(c.name)}</h3><p class="app-balance">${balances[c.id] || 0} 🎟️</p>${prizeList}</div>`;
+        return `<div class="app-card app-card-link" role="link" tabindex="0" data-child-url="${appUrl("/Child/?id=" + encodeURIComponent(c.id))}" style="border-top-color:${c.color || "#4a90d9"}"><h3>${escapeHtml(c.name)}</h3><p class="app-balance">${balances[c.id] || 0} 🎟️</p>${prizeList}</div>`;
       }
     )
     .join("") || `<p>${githubLogin ? "No kids are assigned to this GitHub account." : "Connect a GitHub token to manage kids."}</p>`;

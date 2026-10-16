@@ -3,6 +3,11 @@
 const APP_TOKEN_KEY = "familyAppGithubToken";
 const APP_CART_KEY = "familyAppPendingActions";
 
+function appUrl(path) {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${window.APP_BASE_URL || ""}${normalizedPath}`;
+}
+
 function appSession() {
   return {
     token: sessionStorage.getItem(APP_TOKEN_KEY),
@@ -13,7 +18,7 @@ function appSession() {
 function requireActionLogin() {
   const session = appSession();
   if (!session.token || !session.login) {
-    window.location.replace("/Login/");
+    window.location.replace(appUrl("/Login/"));
     return false;
   }
   return true;
@@ -23,7 +28,7 @@ function appLogout() {
   sessionStorage.removeItem(APP_TOKEN_KEY);
   sessionStorage.removeItem("familyAppGithubLogin");
   sessionStorage.removeItem(APP_CART_KEY);
-  window.location.replace("/Login/");
+  window.location.replace(appUrl("/Login/"));
 }
 
 function pendingCart() {
@@ -191,7 +196,7 @@ async function applyPendingCart() {
 }
 
 async function fetchCSV(path) {
-  const res = await fetch(path, { cache: "no-store" });
+  const res = await fetch(appUrl(path), { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
   return parseCSV(await res.text());
 }
@@ -287,4 +292,3 @@ function formatActivityDate(timestamp) {
 
 window.addEventListener("storage", updateCartNav);
 updateCartNav();
-

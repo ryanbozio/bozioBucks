@@ -19,7 +19,7 @@ async function renderDashboard() {
   for (const child of managedChildren) {
     const card = document.createElement("a");
     card.className = "app-card";
-    card.href = `/Child/?id=${encodeURIComponent(child.id)}`;
+    card.href = appUrl(`/Child/?id=${encodeURIComponent(child.id)}`);
     card.style.borderTopColor = child.color || "#4a90d9";
     const prizes = pendingRedemptions(ledger, child.id);
     const prizeList = prizes.length

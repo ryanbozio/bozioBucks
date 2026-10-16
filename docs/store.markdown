@@ -8,7 +8,7 @@ permalink: /Store/
 
 <div class="app-app" id="storePage">
   <div class="app-page-heading">
-    <a id="storeChildLink" class="app-back-link" href="/Summary/">Back to Child</a>
+    <a id="storeChildLink" class="app-back-link" href="{{ '/Summary/' | relative_url }}">Back to Child</a>
     <p class="app-kicker">REWARDS</p>
     <h1>Store</h1>
     <p>Trade your Bozio Bucks for something good.</p>
@@ -20,6 +20,6 @@ permalink: /Store/
 
 <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
 <script>
-  const GITHUB_REPOSITORY = "ryanbozio/ryanbozio.github.io";
+  const GITHUB_REPOSITORY = "ryanbozio/bozioBucks";
 </script>
 <script src="{{ '/assets/js/store.js' | relative_url }}"></script>

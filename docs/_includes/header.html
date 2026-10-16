@@ -27,6 +27,8 @@
 </header>
 
 <script>
+  window.APP_BASE_URL = {{ site.baseurl | jsonify }};
+
   (() => {
     const authLink = document.getElementById("authNavLink");
     if (!authLink) return;
@@ -39,7 +41,7 @@
       sessionStorage.removeItem("familyAppGithubToken");
       sessionStorage.removeItem("familyAppGithubLogin");
       sessionStorage.removeItem("familyAppPendingActions");
-      window.location.assign("/Login/");
+      window.location.assign(`${window.APP_BASE_URL}/Login/`);
     });
   })();
 </script>

@@ -23,7 +23,7 @@ permalink: /Cart/
 
 <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
 <script>
-  const GITHUB_REPOSITORY = "ryanbozio/ryanbozio.github.io";
+  const GITHUB_REPOSITORY = "ryanbozio/bozioBucks";
   const GITHUB_BRANCH = "main";
 </script>
 <script src="{{ '/assets/js/cart.js' | relative_url }}"></script>

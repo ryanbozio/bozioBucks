@@ -8,13 +8,13 @@ const storeImages = {
   outing: "special-outing.jpeg",
   other: "special-outing.jpeg",
 };
-const storeImageFallback = "/assets/images/store/special-outing.jpeg";
+const storeImageFallback = appUrl("/assets/images/store/special-outing.jpeg");
 let storeState = { child: null, prizes: [], ledger: [] };
 const childId = new URLSearchParams(window.location.search).get("id");
 
 function storeImage(prize) {
   const category = (prize.category || "outing").trim().toLowerCase();
-  return `/assets/images/store/${encodeURIComponent(storeImages[category] || storeImages.outing)}`;
+  return appUrl(`/assets/images/store/${encodeURIComponent(storeImages[category] || storeImages.outing)}`);
 }
 
 function showStoreStatus(message, isError) {
@@ -64,7 +64,7 @@ async function loadStore() {
   storeState.ledger = ledger;
   const balance = computeBalances(ledger)[storeState.child.id] || 0;
   document.querySelector("#storePage h1").textContent = `${storeState.child.name}'s Store`;
-  document.getElementById("storeChildLink").href = `/Child/?id=${encodeURIComponent(storeState.child.id)}`;
+  document.getElementById("storeChildLink").href = appUrl(`/Child/?id=${encodeURIComponent(storeState.child.id)}`);
   document.getElementById("storeChildLink").textContent = `Back to ${storeState.child.name}`;
   document.getElementById("storeBalance").textContent = `${balance} Bozio Bucks available`;
   renderStoreItems(prizes);

@@ -43,7 +43,7 @@ async function loadChild() {
   document.getElementById("childHeading").innerHTML = `<p class="app-kicker">${escapeHtml(current.name.toUpperCase())}'S ACCOUNT</p>`;
   const balance = computeBalances(ledger)[current.id] || 0;
   document.getElementById("childBalance").textContent = `${balance} Bozio Bucks 🎟️`;
-  document.getElementById("childStoreLink").href = `/Store/?id=${encodeURIComponent(current.id)}`;
+  document.getElementById("childStoreLink").href = appUrl(`/Store/?id=${encodeURIComponent(current.id)}`);
   const prizes = pendingRedemptions(ledger, current.id);
   document.getElementById("childPrizes").innerHTML = prizes.length
     ? prizes.map((prize) => `<li><span>${escapeHtml(prize.description)}</span><button type="button" data-use-prize-id="${escapeHtml(prize.id)}">Use</button></li>`).join("")
@@ -62,7 +62,7 @@ function choreImage(chore) {
     Bedroom: "bedroom.jpeg",
     Yardwork: "yardwork.jpeg",
   };
-  return `/assets/images/chores/${imageByCategory[chore.category] || "kitchen.jpeg"}`;
+  return appUrl(`/assets/images/chores/${imageByCategory[chore.category] || "kitchen.jpeg"}`);
 }
 
 async function logChore(chore) {
